@@ -2,7 +2,7 @@
   "name": "togotop",
   "version": "1.0.0",
   "description": "Pet-project 'Togotop'. Web-site for promotion Wildberries sales. (using new technology 'WebPack')",
-  "main": "src/javascript/app.js",
+  "main": "./src/javascript/index.js",
   "scripts": {
     "start": "webpack serve",
     "dev": "webpack",
