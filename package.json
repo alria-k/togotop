@@ -1,0 +1,26 @@
+{
+  "name": "togotop",
+  "version": "1.0.0",
+  "description": "Pet-project 'Togotop'. Web-site for promotion Wildberries sales. (using new technology 'WebPack')",
+  "main": "src/javascript/app.js",
+  "scripts": {
+    "start": "webpack serve",
+    "dev": "webpack",
+    "prod": "webpack --node-env=production"
+  },
+  "keywords": [
+    "webpack",
+    "js",
+    "scss",
+    "html",
+    "css",
+    "adaptive"
+  ],
+  "author": "Kirovich.A.K (artur.kirovich@gmail.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
