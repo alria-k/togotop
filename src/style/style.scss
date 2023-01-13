@@ -104,6 +104,10 @@ body{
         max-width: 188px;
         width: 100%;
         padding: 10px 10px;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        &:hover{
+            background-color: #7F5AF0;
+        }
     }
     &-up {
         flex: 0 0 53%;
@@ -114,6 +118,10 @@ body{
         border-radius: 100px;
         max-width: 233px;
         width: 100%;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        &:hover{
+            background-color: #2CB67D;
+        }
     }
 }
 .nav {
@@ -132,6 +140,10 @@ body{
             padding: 6px 23px 9px 23px;
             background: rgba(44, 182, 125, 0.3);
             border-radius: 100px;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            &:hover{
+                background: rgba(44, 182, 125, 1);
+            }
         }
     }
     &__link {
@@ -153,11 +165,16 @@ body{
         width: 100%;
         color: #FFFFFF;
         border-radius: 40px;
-        padding: 21px 0;
+        padding: 19px 0;
         font-weight: 700;
         font-size: 24px;
         line-height: 38px;
         background-color: #7F5AF0;
+        border: 2px solid #7F5AF0;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        &:hover{
+            background-color: transparent;
+        }
     }
 }
 .green {
@@ -352,6 +369,10 @@ body{
             line-height: 120%;
             letter-spacing: 0.03em;
             color: #FFFFFF;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            &:hover{
+                background-color: #7F5AF0;
+            }
         }
     }
     &__content {
@@ -373,6 +394,10 @@ body{
     }
 }
 .instruction {
+    &__headline{
+        display: flex;
+        gap: 41px;
+    }
     &-img {
         padding: 57px 43px;
         background: #191919;
@@ -413,8 +438,12 @@ body{
         line-height: 147%;
         color: #FFFFFF;
         padding: 10px 24px;
-        border: 4px solid #7F5AF0;
+        border: 2px solid #7F5AF0;
         border-radius: 50px;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        &:hover{
+            background-color: #7F5AF0;
+        }
     }
 }
 .partners-img {
@@ -436,6 +465,7 @@ body{
             padding: 20px 20px 0;
             background: #191919;
             border-radius: 20px;
+            cursor: pointer;
             .item__caption{
                 font-weight: 800;
                 font-size: 25px;
@@ -481,8 +511,9 @@ body{
 }
 .try {
     &-btn {
-        padding: 21px 0;
+        padding: 19px 0;
         background-color:#2CB67D;
+        border: 2px solid #2CB67D;
         color: #FFFFFF;
         font-weight: 700;
         font-size: 24px;
@@ -490,6 +521,10 @@ body{
         border-radius: 100px;
         max-width: 348px;
         width: 100%;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        &:hover{
+            background-color: transparent;
+        }
     }
 }
 .footer {
@@ -609,4 +644,10 @@ body{
         }
     }
 }
-
+.active-btn{
+    border: 2px solid #2CB67D;
+    background-color: #2CB67D;
+    &:hover{
+        background-color: #2CB67D;
+    }
+}

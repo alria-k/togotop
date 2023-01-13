@@ -238,6 +238,10 @@
   .footer__other {
     justify-content: center;
   }
+  .instruction__headline {
+    flex-direction: column;
+    gap: 18px;
+  }
   .instruction__list {
     padding: 0;
     flex-direction: row;
@@ -260,7 +264,8 @@
     transform: translate(0%, 0%);
   }
   .instruction-btn {
-    margin-bottom: 18px;
+    font-size: 25px;
+    padding: 4px 18px;
   }
 }
 
