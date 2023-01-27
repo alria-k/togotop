@@ -1,5 +1,75 @@
 @import url(c:\Users\Admin\Desktop\VSCODE\PETPROJECTS\togotop\src\style\fonts.css);
 @import url(c:\Users\Admin\Desktop\VSCODE\PETPROJECTS\togotop\src\style\cssReset.css);
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes aproachOpenImg {
+  0% {
+    width: 111px;
+    height: 111px;
+    background-color: #7F5AF0;
+    border: 2px solid #7F5AF0;
+  }
+  100% {
+    width: 71px;
+    height: 71px;
+    background-color: #2CB67D;
+    border: 2px solid #2CB67D;
+  }
+}
+
+@keyframes aproachCloseImg {
+  0% {
+    width: 71px;
+    height: 71px;
+    background-color: #2CB67D;
+    border: 2px solid #2CB67D;
+  }
+  100% {
+    width: 111px;
+    height: 111px;
+    background-color: #7F5AF0;
+    border: 2px solid #7F5AF0;
+  }
+}
+
+@keyframes aproachCloseCard {
+  0% {
+    max-width: 506px;
+  }
+  100% {
+    max-width: 228px;
+  }
+}
+
+@keyframes aproachOpenCard {
+  0% {
+    max-width: 228px;
+  }
+  100% {
+    max-width: 506px;
+  }
+}
+
 body {
   background: #141414;
   overflow-x: hidden;
@@ -10,7 +80,7 @@ body {
   max-width: 1320px;
   margin: 0 auto;
   width: 100%;
-  padding: 0 10px;
+  padding: 0 17px;
   overflow: hidden;
 }
 
@@ -69,7 +139,10 @@ body {
   background-color: transparent;
   border: 1px solid #404040;
   border-radius: 20px;
-  margin-bottom: 104px;
+}
+
+.header__stat-box {
+  margin-bottom: 73px;
 }
 
 .header-btn__box {
@@ -137,15 +210,14 @@ body {
   justify-content: space-around;
 }
 
-.nav__item:nth-child(4) {
+.nav__item {
   padding: 6px 23px 9px 23px;
-  background: rgba(44, 182, 125, 0.3);
-  border-radius: 100px;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.nav__item:nth-child(4):hover {
-  background: #2cb67d;
+.nav__item:hover {
+  background: rgba(44, 182, 125, 0.3);
+  border-radius: 100px;
 }
 
 .nav__link {
@@ -191,9 +263,14 @@ body {
   padding: 10px 27px 8px;
   background: #191919;
   border-radius: 20px;
+  user-select: none;
+  touch-action: none;
+  width: 100%;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .stat-container {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 13px;
@@ -236,6 +313,15 @@ body {
 
 .main__possibilities-inner {
   margin-bottom: 187px;
+  overflow: hidden;
+}
+
+.main__possibilities-container {
+  user-select: none;
+  touch-action: none;
+  display: flex;
+  max-width: 100%;
+  padding-right: 20px;
 }
 
 .main__solving-box .box__caption {
@@ -310,14 +396,12 @@ body {
   padding: 94px 0;
   display: flex;
   justify-content: flex-end;
+  min-width: 100%;
+  margin-right: 20px;
 }
 
 .possibilities-item .item__caption {
   margin-bottom: 44px;
-}
-
-.possibilities-item:nth-child(2) {
-  display: none;
 }
 
 .possibilities-img {
@@ -325,6 +409,7 @@ body {
   top: -21%;
   left: 0;
   width: 50%;
+  user-select: none;
 }
 
 .possibilities-text {
@@ -351,6 +436,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.solving__box {
+  position: relative;
 }
 
 .solving__nav {
@@ -382,7 +471,7 @@ body {
 }
 
 .solving__content {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 100px;
 }
@@ -412,6 +501,7 @@ body {
 }
 
 .instruction-img__box {
+  display: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -430,11 +520,16 @@ body {
   position: relative;
 }
 
+.instruction__content-text {
+  touch-action: none;
+}
+
 .instruction__list {
   display: flex;
   flex-direction: column;
   gap: 46px;
   padding-right: 52%;
+  max-width: 100%;
 }
 
 .instruction__list-item {
@@ -465,53 +560,93 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 220px;
+  touch-action: none;
+  user-select: none;
 }
 
 .approach__wrapper {
   display: flex;
   gap: 32px;
   text-align: center;
+  user-select: none;
+  touch-action: none;
 }
 
 .approach__wrapper-item {
-  max-width: 234px;
+  transition: all 0.8s;
+  height: 25rem;
+  max-width: 228px;
+  overflow: hidden;
   width: 100%;
-  padding: 20px 20px 0;
+  padding: 20px 20px 20px;
   background: #191919;
   border-radius: 20px;
   cursor: pointer;
 }
 
 .approach__wrapper-item .item__caption {
+  text-align: left;
   font-weight: 800;
   font-size: 25px;
   line-height: 147%;
-}
-
-.approach__wrapper-item .item__desc {
-  display: none;
+  margin-bottom: 11px;
+  max-width: 190px;
+  width: 100%;
 }
 
 .approach__wrapper-icon {
   margin-bottom: 41px;
 }
 
+.approach__wrapper .item__desc {
+  opacity: 0;
+  visibility: hidden;
+  text-align: left;
+}
+
 .approach-open {
   text-align: left;
-  max-width: 501px;
+  max-width: 506px;
   width: 100%;
-  padding: 20px 35px 41px;
   background-image: url("../img/approach-noob-bg.svg");
   background-repeat: no-repeat;
   background-position: right center;
-}
-
-.approach-open .item__caption {
-  margin-bottom: 11px;
+  animation: aproachOpenCard 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .approach-open .item__desc {
-  display: block;
+  animation: fadeIn 2s cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: forwards;
+  animation-delay: 0.6s;
+}
+
+.approach-open .approach-img {
+  transition: transform 0.8s;
+  transform: translateX(0%);
+  animation: aproachOpenImg 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: forwards;
+}
+
+.approach-close {
+  animation: aproachCloseCard 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.approach-close .item__desc {
+  width: 431px;
+  animation: fadeOut 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: forwards;
+}
+
+.approach-close .approach-img {
+  transition: transform 0.8s;
+  transform: translateX(35%);
+}
+
+.approach-img {
+  border-radius: 100px;
+  padding: 1rem;
+  animation: aproachCloseImg 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: forwards;
 }
 
 .feedback-img__box {
@@ -669,4 +804,35 @@ body {
 
 .active-btn:hover {
   background-color: #2CB67D;
+}
+
+.solving__content--hidden {
+  animation: fadeOut 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.solving__content--open {
+  display: flex;
+  animation: fadeIn 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: forwards;
+}
+
+.bars {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 31px;
+}
+
+.bars-line {
+  height: 3px;
+  max-width: 180px;
+  min-width: 90px;
+  width: 100%;
+  background-color: #606060;
+  border-radius: 100px;
+}
+
+.bars-line--active {
+  transition: background 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  background-color: #7F5AF0;
 }

@@ -15,18 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     instructionCards = document.querySelectorAll(".instruction-img__box");
   const approachBtns = document.querySelectorAll(".approach-img"),
     approachCards = document.querySelectorAll(".approach__wrapper-item");
-  const statSlider = new GalerySlider(
-    document.querySelector(".stat"),
-    document.querySelector(".header__stat-inner"),
-    document.querySelectorAll(".stat-container"),
-    0
-  );
-  const possibilitiesSlider = new GalerySlider(
-    document.querySelector(".main__possibilities-container"),
-    document.querySelector(".main__possibilities-slider"),
-    document.querySelectorAll(".possibilities-item"),
-    0
-  );
 
   solvingBtns.forEach((elem) => {
     elem.addEventListener("click", (val) => {
@@ -63,6 +51,38 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
   });
-  statSlider.sliderCenter();
-  possibilitiesSlider.sliderUsual();
+  new GalerySlider(
+    document.querySelector(".main__possibilities-container"),
+    document.querySelector(".main__possibilities-slider"),
+    document.querySelectorAll(".possibilities-item"),
+    0
+  ).setParametrs();
+});
+window.addEventListener("resize", () => {
+  if (window.innerWidth <= 768) {
+    new GalerySlider(
+      document.querySelector(".instruction__list"),
+      document.querySelector(".instruction__content-text"),
+      document.querySelectorAll(".instruction__list-item"),
+      0
+    ).setParametrs();
+    new GalerySlider(
+      document.querySelector(".approach__wrapper"),
+      document.querySelector(".main__approach-inner"),
+      document.querySelectorAll(".approach__wrapper-item"),
+      0
+    ).setParametrs();
+    new GalerySlider(
+      document.querySelector(".stat"),
+      document.querySelector(".header__stat-inner"),
+      document.querySelectorAll(".stat-container"),
+      0
+    ).sliderCenter();
+    new GalerySlider(
+      document.querySelector(".partners-img__wrapper"),
+      document.querySelector(".partners-img__slider"),
+      document.querySelectorAll(".partners-img"),
+      0
+    ).sliderCenter();
+  }
 });

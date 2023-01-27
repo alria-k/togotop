@@ -1,3 +1,12 @@
+@media (max-width:1275px){
+    .approach {
+        &__wrapper {
+            &-item {
+                height: auto;
+            }
+        }
+    }
+}
 @media (max-width:1024px) {
     .nav {
         &__inner{
@@ -128,6 +137,9 @@
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 30px;
+            &-item{
+                height: 25rem;
+            }
         }
     }
     .instruction {
@@ -198,8 +210,8 @@
             }
         }
         &__stat{
-            &-inner{
-                margin-bottom: 55px;
+            &-box{
+                margin-bottom: 24px;
             }
         }
     }
@@ -216,10 +228,15 @@
         }
     }
     .stat{
+        padding: 10px 0px 8px;
+        gap: 0px;
         &__count{
             &-box{
                 min-width: 260px;
             }
+        }
+        &-container{
+            padding-right: 15px;
         }
     }
     .main{
@@ -228,6 +245,9 @@
                 .box__caption{
                     margin-bottom: 65px;
                 }
+            }
+            &-container{
+                padding-right: 0;
             }
         }
         &__solving{
@@ -238,6 +258,7 @@
         &__approach{
             &-inner{
                 margin-bottom: 100px;
+                overflow: hidden;
             }
         }
         &__feedback{
@@ -260,6 +281,7 @@
             justify-content: center;
             align-items: center;
             gap: 31px;
+            margin-right: 0;
         }
         &-img{
             position: initial;
@@ -290,8 +312,11 @@
     .approach{
         &__wrapper{
             display: flex;
+            max-width: 100%;
+            gap: 0;
             &-item{
                 min-width: 100%;
+                padding: 20px 20px 58px;
             }
         }
     }
@@ -328,7 +353,8 @@
             margin-bottom: 16px;
         }
         &__other{
-            justify-content: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
     }
     .instruction{
@@ -336,17 +362,23 @@
             flex-direction: column;
             gap: 18px;
         }
+        &__content{
+            &-text{
+                overflow: hidden;
+            }
+        }
         &__list{
             padding: 0;
             flex-direction: row;
+            max-width: 100%;
+            gap: 0;
             &-item{
                 padding: 20px 17px 39px;
-                max-width: 100%;
                 flex-direction: column-reverse;
                 align-items: center;
-                min-width: 100%;
                 background: #191919;
                 border-radius: 20px;
+                min-width: 100%;
             }
         }
         &-img{
