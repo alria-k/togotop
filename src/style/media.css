@@ -5,12 +5,15 @@
 }
 
 @media (max-width: 1024px) {
+  .nav__item {
+    padding: 6px 10px 9px 10px;
+  }
   .nav__inner {
     justify-content: space-between;
     padding: 0 10px;
   }
   .nav__link {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 23px;
   }
   .nav__link svg {
@@ -220,12 +223,19 @@
   .solving__content {
     flex-direction: column;
   }
+  .solving__content-text .item__caption {
+    margin-bottom: 25px;
+  }
   .solving__nav-item {
     max-width: 200px;
   }
   .partners-img__wrapper {
     flex-wrap: nowrap;
     justify-content: flex-start;
+    margin-bottom: 0;
+  }
+  .partners-img__slider {
+    margin-bottom: 103px;
   }
   .approach__wrapper {
     display: flex;
@@ -235,6 +245,49 @@
   .approach__wrapper-item {
     min-width: 100%;
     padding: 20px 20px 58px;
+    background-image: url("../img/approach-noob-bg.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+  .approach__wrapper .item__desc {
+    opacity: 1;
+    visibility: visible;
+    animation-name: none;
+    transition: none;
+  }
+  .approach-img {
+    animation-name: none;
+    transition: none;
+  }
+  .approach-open {
+    animation-name: none;
+    transition: none;
+  }
+  .approach-open .approach-img {
+    transition: none;
+    animation-name: none;
+    width: 71px;
+    height: 71px;
+    background-color: #2CB67D;
+    border: 2px solid #2CB67D;
+  }
+  .approach-open .item__desc {
+    width: 100%;
+  }
+  .approach-close {
+    animation-name: none;
+    transition: none;
+  }
+  .approach-close .approach-img {
+    transition: none;
+    transform: translateX(0%);
+    width: 71px;
+    height: 71px;
+    background-color: #2CB67D;
+    border: 2px solid #2CB67D;
+  }
+  .approach-close .item__desc {
+    width: 100%;
   }
   .feedback-img__box {
     display: none;
@@ -263,12 +316,21 @@
     justify-content: space-between;
     flex-wrap: wrap;
   }
+  .footer__wrapper .logo-img {
+    margin: 0 auto;
+    margin-bottom: 27px;
+  }
   .instruction__headline {
     flex-direction: column;
     gap: 18px;
   }
   .instruction__content-text {
     overflow: hidden;
+  }
+  .instruction-img__box {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
   }
   .instruction__list {
     padding: 0;
@@ -279,10 +341,11 @@
   .instruction__list-item {
     padding: 20px 17px 39px;
     flex-direction: column-reverse;
-    align-items: center;
+    align-items: flex-start;
     background: #191919;
     border-radius: 20px;
     min-width: 100%;
+    justify-content: flex-end;
   }
   .instruction-img {
     background: transparent;
@@ -295,6 +358,34 @@
   .instruction-btn {
     font-size: 25px;
     padding: 4px 18px;
+    background-color: #2CB67D;
+    border: 2px solid #2CB67D;
+  }
+  .sign-in {
+    max-width: 115px;
+    font-size: 12px;
+    border-color: #2CB67D;
+    background-color: transparent;
+    font-weight: 700;
+  }
+  .sign-in:hover {
+    background-color: #2CB67D;
+  }
+  .sign-up {
+    max-width: 160px;
+    font-size: 12px;
+    border-color: #7F5AF0;
+    background-color: transparent;
+    font-weight: 700;
+  }
+  .sign-up:hover {
+    background-color: #7F5AF0;
+  }
+  .mobile-nav__box {
+    display: block;
+  }
+  .bars {
+    display: flex;
   }
 }
 
@@ -327,9 +418,6 @@
   }
   .main__partners-box .box__caption {
     margin-bottom: 51px;
-  }
-  .main__try-box .item__desc {
-    margin-bottom: 29px;
   }
   .stat-text {
     font-size: 14px;
@@ -367,5 +455,8 @@
   }
   .approach-open {
     padding: 20px 17px 41px;
+  }
+  .footer__try-box .item__desc {
+    margin-bottom: 29px;
   }
 }

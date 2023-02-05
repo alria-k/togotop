@@ -1,133 +1,5 @@
-// export class GalerySlider {
-//   constructor(block, container, elems, count) {
-//     //our main block width @elems inside
-//     this.block = block;
-//     //our main container which contain @main
-//     this.container = container;
-//     //slider items
-//     this.elems = elems;
-//     //number of starting slide
-//     this.count = count;
-//     //count check
-//     this.countCheck = false;
-//     //active bars
-//     // this.barBox = document.createElement("div");
-//     // this.barsLine = document.createElement("span");
-
-//     this.setParam = this.setParam.bind(this);
-//     this.events = this.events.bind(this);
-//     this.startSlider = this.startSlider.bind(this);
-//     this.stopSlider = this.stopSlider.bind(this);
-//     this.draging = this.draging.bind(this);
-//     this.changePosition = this.changePosition.bind(this);
-//     this.resize = this.resize.bind(this);
-//     this.removeEvents = this.removeEvents.bind(this);
-//     // this.manageHtml = this.manageHtml.bind(this);
-//     this.resize();
-//     this.setParam();
-//     this.events();
-//   }
-//   setParam() {
-//     this.coords = this.block.getBoundingClientRect(); //get all coordinates of @block
-//     this.coordsWidth = this.coords.width; //resive only width
-//     this.center = //this calculations we are doing to get max position of last element, we will need this for easing, while person on last slide, //we get the center for all @elems in order to while scrolling they always be in center);
-//       this.block.offsetLeft +
-//       this.block.offsetWidth / 2 -
-//       (this.container.offsetLeft + this.container.offsetWidth / 2);
-//     this.maximumX = -(this.elems.length - 1) * this.center; //below we get the start position, which depens on what @count we wrote
-//     this.changeX = -this.center * this.count; //we set some width parametrs for slider. to work correctly
-//   }
-//   events() {
-//     this.container.addEventListener("pointerdown", this.startSlider); //do @startSlider func when we cliked on @block
-//     this.container.addEventListener("pointerup", this.stopSlider); //do @stopSlider when person mouseup/pointerup on @window
-//   }
-//   removeEvents() {
-//     this.container.removeEventListener("pointerdown", this.startSlider);
-//     this.container.removeEventListener("pointerup", this.stopSlider);
-//   }
-//   startSlider(event) {
-//     this.countCheck = false; //we still hold false, until person pointerup/mouseup from @block
-//     this.mouseX = event.pageX; //geting static coordinates of click
-//     this.startX = this.changeX; //save start position of @block
-//     this.container.addEventListener("pointermove", this.draging); //while person clicked on slider, he/she/it can move it left or right, while this movement we are using @dragging func
-//   }
-//   stopSlider() {
-//     this.container.removeEventListener("pointermove", this.draging); //after person mouseup/pointerup, we remove listener in order to avoid future errors which might happen
-//     this.changeX = -this.center * this.count; //changing slide, if you keep reading you will se that after person move slider more/less than 20px/-20px, we increas default (0) number of @count. So our start position of slider multipy (1). So we move slider on that coordinates
-//     this.changePosition(); //changing position after all
-//   }
-//   draging(event) {
-//     const currentMove = event.pageX - this.mouseX; // here we dinamicly change coordinates of slider by using "mouse cliked" coordinates minus coordinates which we dinamicly get by moving mouse
-//     const easing = currentMove / 10; //this is simple easing when person on first/last slide (we do this in order to avoid giant and fast movement)
-//     this.changeX = Math.max(
-//       Math.min(currentMove + this.startX, easing),
-//       this.maximumX + easing
-//     );
-//     this.changePosition(); //change position, just edit trasform: translate3d
-//     if (
-//       currentMove > 20 &&
-//       currentMove > 0 &&
-//       !this.countCheck &&
-//       this.count > 0
-//     ) {
-//       this.countCheck = true;
-//       this.count = this.count - 1;
-//     } //here we checking if person move slider more than 20px/-20px, for change number of slide. As i writte above, to change position
-//     if (
-//       currentMove < -20 &&
-//       currentMove < 0 &&
-//       !this.countCheck &&
-//       this.count < this.elems.length - 1
-//     ) {
-//       this.countCheck = true;
-//       this.count = this.count + 1;
-//     }
-//   }
-//   resize() {
-//     window.addEventListener("resize", () => {
-//       this.setParam(); //we are just edit parametrs while some very picky developers or my boss want to see how good it works while resize width of screen
-//     });
-//   }
-//   // manageHtml() {
-//   //   if (window.innerWidth <= 768) {
-//   //     this.barBox.className = "bars";
-//   //     this.container.append(this.barBox);
-//   //     for (let i = 0; i < this.elems.length; i++) {
-//   //       this.barsLine = document.createElement("span");
-//   //       this.barsLine.className = "bars-line";
-//   //       this.barBox.append(this.barsLine);
-//   //     }
-//   //   }
-//   // }
-//   changePosition() {
-//     this.block.style.transform = `translate3d(${this.changeX}px, 0, 0)`; //just change transform translate. so that is make slider move
-//   }
-
-//   sliderCenter() {
-//     if (window.innerWidth <= 768) {
-//       this.elems.forEach((e) => {
-//         this.block.style.width = `${e.offsetWidth * this.elems.length}px`; //to set right width for @block, we might every @elems item multiply by all @elems length
-//         e.style.width = `${e.offsetWidth}px`; //this if obviously :)
-//       });
-//     } else {
-//       //if our window width are lower than 768px, we remove all size parametrs from @elems
-//       this.elems.forEach((e) => {
-//         this.block.style.width = ``;
-//         e.style.width = ``;
-//         this.changeX = 0;
-//       });
-//     }
-//   }
-//   //   sliderUsual() {
-//   //     this.block.style.width = `${this.elems.length * this.coordsWidth}px`;
-//   //     this.elems.forEach((item) => {
-//   //       item.style.width = `${this.coordsWidth}px`;
-//   //     });
-//   //     this.setParam(this.block.getBoundingClientRect().width);
-//   //   }
-// }
 export class GalerySlider {
-  constructor(block, container, elems, count) {
+  constructor(block, container, elems, count, options = {}) {
     //our main block width @elems inside
     this.block = block;
     //our main container which contain @main
@@ -140,6 +12,9 @@ export class GalerySlider {
     this.countCheck = false;
     //check for slider center
     this.center = false;
+    this.settings = {
+      margin: options.margin || 0,
+    };
 
     this.setParametrs = this.setParametrs.bind(this);
     this.setEvents = this.setEvents.bind(this);
@@ -151,13 +26,27 @@ export class GalerySlider {
     this.setStyleTransition = this.setStyleTransition.bind(this);
     this.resetStyleTransition = this.resetStyleTransition.bind(this);
     this.sliderCenter = this.sliderCenter.bind(this);
+    this.destroyEvents = this.destroyEvents.bind(this);
+    this.manageHtml = this.manageHtml.bind(this);
+    this.changeDotsActive = this.changeDotsActive.bind(this);
+    this.setDots = this.setDots.bind(this);
 
+    this.setDots()
     this.setEvents();
+    this.manageHtml();
   }
   sliderCenter() {
     this.center = true;
     this.resizeGallery();
     this.setParametrs();
+  }
+  changeDotsActive() {
+    for (let i = 0; i < this.allDotsInEveryContainer.length; i++) {
+      this.allDotsInEveryContainer[i].classList.remove("bars-line--active");
+      if (i == this.count) {
+        this.allDotsInEveryContainer[i].classList.add("bars-line--active");
+      }
+    }
   }
   setParametrs() {
     const sliderNodeCoords = this.block.getBoundingClientRect();
@@ -168,12 +57,14 @@ export class GalerySlider {
     this.width = sliderNodeCoords.width;
     this.x = this.center
       ? -this.count * this.centerCoords
-      : -this.count * this.width;
+      : -this.count * (this.width + this.settings.margin);
     this.maximumX = this.center
       ? -(this.elems.length - 1) * this.centerCoords
-      : -(this.elems.length - 1) * this.width;
+      : -(this.elems.length - 1) * (this.width + this.settings.margin);
     this.block.style.width = `${
-      this.center ? false : this.width * this.elems.length
+      this.center
+        ? false
+        : (this.width + this.settings.margin) * this.elems.length
     }px`;
     this.elems.forEach((item) => {
       if (!this.center) {
@@ -190,25 +81,54 @@ export class GalerySlider {
       }
     });
   }
+  setDots(){
+    let bars = document.createElement("div");
+    bars.className = "bars";
+    this.container.append(bars);
+    this.elems.forEach((item, i) => {
+      this.barsLine = document.createElement("div");
+      this.barsLine.className = "bars-line";
+      bars.append(this.barsLine);
+    });
+    this.allDotsInEveryContainer =
+    this.container.querySelectorAll(".bars-line");
+    this.changeDotsActive();
+  }
+  manageHtml() {
+    this.elems.forEach((item, i) => {
+      if(window.innerWidth >= 768){
+        return
+      } else {
+        item.style.marginRight = `${this.settings.margin}px`;
+      }
+      
+    });
+  }
   setEvents() {
     window.addEventListener("resize", this.resizeGallery);
     this.block.addEventListener("pointerdown", this.startSlide);
-    window.addEventListener("pointerup", this.stopSlide);
+    this.block.addEventListener("pointerup", this.stopSlide);
+  }
+  destroyEvents() {
+    this.block.style.width = ``;
+    this.block.removeEventListener("pointerdown", this.startSlide);
+    this.block.removeEventListener("pointerup", this.stopSlide);
   }
   startSlide(event) {
     this.countCheck = false;
     this.clientX = event.pageX;
     this.startX = this.x;
-    window.addEventListener("pointermove", this.draging);
+    this.block.addEventListener("pointermove", this.draging);
     this.resetStyleTransition();
   }
   stopSlide() {
-    window.removeEventListener("pointermove", this.draging);
+    this.block.removeEventListener("pointermove", this.draging);
     this.x = this.center
       ? -this.count * this.centerCoords
-      : -this.count * this.width;
+      : -this.count * (this.width + this.settings.margin);
     this.setStylePosition();
     this.setStyleTransition();
+    this.changeDotsActive();
   }
   draging(event) {
     this.dragX = event.pageX;
@@ -237,15 +157,79 @@ export class GalerySlider {
     this.block.style.transform = `translate3d(${this.x}px, 0, 0)`;
   }
   resizeGallery() {
-    this.count = 0;
-    this.setParametrs();
+    if (this.center && window.innerWidth > 768) {
+      this.destroyEvents();
+      this.count = 0;
+      this.setParametrs();
+    } else {
+      this.manageHtml();
+      this.destroyEvents();
+      this.count = 0;
+      this.block.style.transform = `translate3d(0px, 0, 0)`;
+      this.setEvents();
+      this.setParametrs();
+    }
   }
   setStyleTransition() {
     this.block.style.transition =
-      "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)";
+      "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
   }
   resetStyleTransition() {
     this.block.style.transition = "transform 0s cubic-bezier(0.22, 1, 0.36, 1)";
+  }
+}
+export function tabs(array, openCls, hideCls) {
+  let openTabs = document.getElementsByClassName(openCls);
+  array.forEach((elem, i) => {
+    elem.classList.add(hideCls);
+    elem.addEventListener("click", (event) => {
+      if (openTabs.length > 0 && openTabs[0] != event.currentTarget) {
+        openTabs[0].classList.add(hideCls);
+        openTabs[0].classList.remove(openCls);
+      }
+      elem.classList.toggle(openCls);
+      elem.classList.remove(hideCls);
+    });
+  });
+}
+export function burger(elem, linesElem, crossCls, activeBurgerCls) {
+  elem.addEventListener("click", () => {
+    elem.classList.toggle(activeBurgerCls);
+    linesElem.classList.toggle(crossCls);
+  });
+}
+export class MobileBurger {
+  constructor(burger, mobileNav) {
+    this.burger = burger;
+    this.mobileNav = mobileNav;
+    this.mobileNavOpenCls = "mobile-nav__box--open";
+    this.overflowPopup = document.createElement("div");
+    this.overflowPopup.classList.add("popup-overflow");
+
+    this.events = this.events.bind(this);
+    this.openMobile = this.openMobile.bind(this);
+    this.closeMobile = this.closeMobile.bind(this);
+
+    this.events();
+  }
+  events() {
+    this.burger.addEventListener("click", (event) => {
+      if (!this.mobileNav.classList.contains(this.mobileNavOpenCls)) {
+        this.openMobile();
+      } else {
+        this.closeMobile();
+      }
+    });
+  }
+  openMobile() {
+    this.mobileNav.classList.add(this.mobileNavOpenCls);
+    document.body.append(this.overflowPopup);
+    document.body.style.overflowY = "hidden";
+  }
+  closeMobile() {
+    this.mobileNav.classList.toggle(this.mobileNavOpenCls);
+    this.overflowPopup.remove();
+    document.body.style.overflowY = "";
   }
 }
 export function switchSolvingCards(btns, cards, firstClass, secondClass, time) {
@@ -268,4 +252,21 @@ export function removeActive(array, cls) {
   return array.forEach((elem) => {
     elem.classList.remove(cls);
   });
+}
+export function resetStyle(arr, val){
+  arr.forEach(elem => {
+    elem.style.marginRight = val
+  })
+}
+export function tabsHover(array, openCls, hideCls){
+  array.forEach(elem => {
+    elem.addEventListener('mouseenter', item => {
+      if(!elem.querySelector('.nav__item-box')) return
+      elem.querySelector('.nav__item-box').classList.add(openCls)
+    })
+    elem.addEventListener('mouseleave', item => {
+      if(!elem.querySelector('.nav__item-box')) return
+      elem.querySelector('.nav__item-box').classList.remove(openCls)
+    })
+  })
 }

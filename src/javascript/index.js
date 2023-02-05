@@ -6,6 +6,11 @@ import {
   switchSolvingCards,
   removeActive,
   GalerySlider,
+  tabs,
+  burger,
+  MobileBurger,
+  resetStyle,
+  tabsHover
 } from "/src/javascript/app.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -55,34 +60,63 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".main__possibilities-container"),
     document.querySelector(".main__possibilities-slider"),
     document.querySelectorAll(".possibilities-item"),
-    0
+    0,
+    { margin: 20 }
   ).setParametrs();
+  new MobileBurger(
+    document.querySelector(".burger-box"),
+    document.querySelector(".mobile-nav__box")
+  );
+  tabs(
+    document.querySelectorAll(".mobile-nav__accordion-box"),
+    "mobile-nav__accordion--open",
+    "mobile-nav__accordion--close"
+  );
+  tabsHover(document.querySelectorAll('.nav__item'), "nav__item-box--open")
+  burger(
+    document.querySelector(".burger-box"),
+    document.querySelector(".burger-lines"),
+    "burger-lines--cross",
+    "burger-box--active"
+  );
 });
-window.addEventListener("resize", () => {
-  if (window.innerWidth <= 768) {
-    new GalerySlider(
-      document.querySelector(".instruction__list"),
-      document.querySelector(".instruction__content-text"),
-      document.querySelectorAll(".instruction__list-item"),
-      0
-    ).setParametrs();
-    new GalerySlider(
-      document.querySelector(".approach__wrapper"),
-      document.querySelector(".main__approach-inner"),
-      document.querySelectorAll(".approach__wrapper-item"),
-      0
-    ).setParametrs();
-    new GalerySlider(
-      document.querySelector(".stat"),
-      document.querySelector(".header__stat-inner"),
-      document.querySelectorAll(".stat-container"),
-      0
-    ).sliderCenter();
-    new GalerySlider(
-      document.querySelector(".partners-img__wrapper"),
-      document.querySelector(".partners-img__slider"),
-      document.querySelectorAll(".partners-img"),
-      0
-    ).sliderCenter();
+const statSlider = new GalerySlider(
+  document.querySelector(".stat"),
+  document.querySelector(".header__stat-inner"),
+  document.querySelectorAll(".stat-container"),
+  0
+);
+const approachSlider = new GalerySlider(
+  document.querySelector(".approach__wrapper"),
+  document.querySelector(".main__approach-inner"),
+  document.querySelectorAll(".approach__wrapper-item"),
+  0,
+  { margin: 20 }
+);
+const instructionSlider = new GalerySlider(
+  document.querySelector(".instruction__list"),
+  document.querySelector(".instruction__content-text"),
+  document.querySelectorAll(".instruction__list-item"),
+  0,
+  { margin: 20 }
+);
+const parntersSlider = new GalerySlider(
+  document.querySelector(".partners-img__wrapper"),
+  document.querySelector(".partners-img__slider"),
+  document.querySelectorAll(".partners-img"),
+  0
+);
+window.addEventListener('resize', () => {
+  if(window.innerWidth <= 768){
+    parntersSlider.sliderCenter()
+    statSlider.sliderCenter()
+    approachSlider.setParametrs()
+    instructionSlider.setParametrs()
+  } else {
+    resetStyle(document.querySelectorAll(".approach__wrapper-item"), '')
+    resetStyle(document.querySelectorAll(".instruction__list-item"), '')
+    approachSlider.destroyEvents()
+    instructionSlider.destroyEvents()
   }
-});
+})
+
